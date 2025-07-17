@@ -1,0 +1,39 @@
+---
+import NavbarButton from "../shared/NavbarButton.astro";
+---
+
+<div class="relative w-full flex justify-center">
+  <div class="absolute z-50 fixed top-2 flex justify-center">
+    <div class="shadow-lg rounded-[10rem] overflow-hidden">
+      <section class="solid-glass">
+        <navbar class="flex justify center py-2 px-5">
+          <NavbarButton href="/" label="aBOUT ME" />
+          <NavbarButton href="/about" label="PROjECTS" />
+          <NavbarButton href="/projects" label="SERvICES" />
+          <NavbarButton href="/contact" label="CoNTACT" />
+        </navbar>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { hexToRgb } from "../../../public/js/utils.js";
+  import { LiquidGlass } from "../../../public/js/Liquid-Glass.js";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const tintColor = hexToRgb("#ffffff");
+    document.querySelectorAll(".solid-glass").forEach((el) => {
+      new LiquidGlass(el, {
+        tintColor,
+        tintOpacity: 0.1,
+        frostBlur: 1,
+        distortionStrength: 80,
+        shadowBlur: 20,
+        shadowSpread: 0,
+        noiseFrecuency: 0.014,
+        noiseStrength: 135
+      });
+    });
+  });
+</script>

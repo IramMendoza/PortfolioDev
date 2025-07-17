@@ -1,0 +1,40 @@
+---
+import Icon from "../shared/Icon.astro";
+---
+
+<section
+  id="Who I Am"
+  class="bg-black w-screen h-screen relative overflow-hidden"
+>
+  <h2 class="text-white text-center pt-16 text-[4rem] md:text-[6rem] font-bold">WHO I AM</h2>
+  <div class="w-full h-full px-10 md:px-20 py-5 md:py-10 md:flex md:justify-end">
+    <div class="flex flex-col items-center max-w-[500px]">
+      <p class="text-white">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad in
+        voluptates aliquid quibusdam architecto aspernatur, libero quaerat
+        nostrum porro reprehenderit cum quia iure ab deserunt culpa! Alias optio
+        ipsa illo!
+      </p>
+      <div id="IconContainer">
+        <div class="flex justify-center items-center gap-10 py-5">
+          <Icon src="/javascript-16-svgrepo-com.png" />
+          <Icon src="/typescript-16-svgrepo-com.png" />
+          <Icon src="/python-127-svgrepo-com.png" />
+        </div>
+        <div class="flex justify-center items-center gap-10 py-5">
+          <Icon src="/react-svgrepo-com.png" />
+          <Icon src="/astro-svgrepo-com.png" />
+          <Icon src="/framer-svgrepo-com.png" />
+          <Icon src="/django-svgrepo-com.png" />
+        </div>
+        <div class="flex justify-center items-center gap-10 py-5">
+          <Icon src="aws-svgrepo-com.png" />
+        </div>
+      </div>
+    </div>
+</div>
+  <img
+    class="absolute z-0 w-[100vw] md:w-[50vw] md:left-20 bottom-12"
+    src="/liquidGlass2.png"
+  />
+</section>

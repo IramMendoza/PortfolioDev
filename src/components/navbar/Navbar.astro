@@ -3,21 +3,88 @@ import GlassEffect from "./GlassEffect.astro"
 ---
 
 <div class="relative w-screen">
-  <div class="absolute z-50 fixed top-2 flex w-full">
-    <img id="logoIram" src="/iramLetras.svg" class="absolute h-full left-20 hidden lg:block" />
+  <div class="absolute z-50 fixed top-2 flex w-full navbar">
+    <img id="logoIram" src="/iramLetras.svg" class="absolute h-full left-20 hidden lg:block darkMode" />
     <div class="w-full flex justify-center items-center">
       <GlassEffect>
         <navbar class="flex justify center shadow-lg rounded-[10rem] overflow-hidden py-2 px-5 md:px-15">
-          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">aBOUT ME</a>
-          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">PROjECTS</a>
-          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">SERvICES</a>
-          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">CoNTACT</a>
+          <a href="" class="navbarButton darkMode">aBOUT ME</a>
+          <a href="" class="navbarButton darkMode">PROjECTS</a>
+          <a href="" class="navbarButton darkMode">SERvICES</a>
+          <a href="" class="navbarButton darkMode">CoNTACT</a>
         </navbar>
       </GlassEffect>
     </div>
   </div>
 </div>
 
+<style>
+
+  #logoIram {
+    filter : invert(0%)
+  }
+
+  .navbarButton {
+    padding-left: 0.5rem;  
+    padding-right: 0.5rem;
+    color: black;           
+    font-size: 10px;
+    filter : invert(0%);        
+  }
+
+  @media (min-width: 768px) {
+    .navbarButton {
+    font-size: 15px;      
+    }
+  }
+</style>
+
 <script>
-  
+  import { animate } from "motion/mini";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.querySelector(".navbar");
+    const darkModeElements = document.querySelectorAll(".darkMode");
+    const darkSections = document.querySelectorAll(".darkSection");
+
+    let lastState = false;
+
+    function checkOverlap() {
+      if (!navbar) {
+        requestAnimationFrame(checkOverlap)
+        return
+      }
+      const navbarRect = navbar.getBoundingClientRect()
+
+      let isOverDark = false;
+
+      darkSections.forEach((section) => {
+        const sectionRect = section.getBoundingClientRect()
+
+        const overlap =
+          navbarRect.bottom > sectionRect.top &&
+          navbarRect.top < sectionRect.bottom
+
+        if (overlap) {
+          isOverDark = true
+        }
+      })
+
+      if (isOverDark !== lastState) {
+        lastState = isOverDark
+
+        darkModeElements.forEach((el) =>
+          animate(
+            el,
+            { filter: isOverDark ? "invert(100%)" : "invert(0%)" },
+            { duration: 0.1 }
+          )
+        );
+      }
+
+      requestAnimationFrame(checkOverlap)
+    }
+
+    requestAnimationFrame(checkOverlap)
+  })
 </script>

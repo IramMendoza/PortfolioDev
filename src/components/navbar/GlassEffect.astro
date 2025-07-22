@@ -1,0 +1,24 @@
+<div class="solid-glass">
+    <slot/>
+</div>
+
+<script>
+    import { hexToRgb } from "../../../public/js/utils.js";
+    import { LiquidGlass } from "../../../public/js/Liquid-Glass.js";
+
+    window.addEventListener("DOMContentLoaded", () => {
+    const tintColor = hexToRgb("#ffffff");
+    document.querySelectorAll(".solid-glass").forEach((el) => {
+      new LiquidGlass(el, {
+        tintColor,
+        tintOpacity: 0.1,
+        frostBlur: 1,
+        distortionStrength: 80,
+        shadowBlur: 20,
+        shadowSpread: 0,
+        noiseFrecuency: 0.014,
+        noiseStrength: 135
+      });
+    });
+  });
+</script>

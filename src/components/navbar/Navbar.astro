@@ -1,41 +1,23 @@
 ---
-import NavbarButton from "../shared/NavbarButton.astro";
+import GlassEffect from "./GlassEffect.astro"
 ---
 
 <div class="relative w-screen">
   <div class="absolute z-50 fixed top-2 flex w-full">
     <img id="logoIram" src="/iramLetras.svg" class="absolute h-full left-20 hidden lg:block" />
     <div class="w-full flex justify-center items-center">
-      <section class="solid-glass">
+      <GlassEffect>
         <navbar class="flex justify center shadow-lg rounded-[10rem] overflow-hidden py-2 px-5 md:px-15">
-          <NavbarButton href="/" label="aBOUT ME" />
-          <NavbarButton href="/about" label="PROjECTS" />
-          <NavbarButton href="/projects" label="SERvICES" />
-          <NavbarButton href="/contact" label="CoNTACT" />
+          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">aBOUT ME</a>
+          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">PROjECTS</a>
+          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">SERvICES</a>
+          <a href="" class="px-2 text-black text-[10px] md:text-[15px]">CoNTACT</a>
         </navbar>
-      </section>
+      </GlassEffect>
     </div>
   </div>
 </div>
 
 <script>
-  import { hexToRgb } from "../../../public/js/utils.js";
-  import { LiquidGlass } from "../../../public/js/Liquid-Glass.js";
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const tintColor = hexToRgb("#ffffff");
-    document.querySelectorAll(".solid-glass").forEach((el) => {
-      new LiquidGlass(el, {
-        tintColor,
-        tintOpacity: 0.1,
-        frostBlur: 1,
-        distortionStrength: 80,
-        shadowBlur: 20,
-        shadowSpread: 0,
-        noiseFrecuency: 0.014,
-        noiseStrength: 135
-      });
-    });
-  });
-
+  
 </script>

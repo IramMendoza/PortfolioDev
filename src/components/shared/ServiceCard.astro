@@ -1,0 +1,32 @@
+---
+interface Props {
+  image: string;
+  service: string;
+  description: string;
+  color : string;
+}
+
+const { image, service, description, color } = Astro.props;
+
+/// El span debe tener los colores tambien invertidos, ya que su elemento padre fuerza el inversion del color tambien en el texto
+
+---
+
+<div class={`flex flex-col md:flex-row bg-${color} md:max-w-[90%] shadow-lg p-4`}>
+  <img src={image} class="w-full md:w-[25vw] object-cover" />
+
+  <div class="flex flex-col justify-between px-4 py-2 h-full w-full">
+    <p class={`text-${color} invert font-bold text-xl md:text-2xl`}>
+      {service}
+    </p>
+
+    <p class={`text-${color} invert text-sm mb-auto md:text-base my-4 md:my-2 leading-relaxed`}>
+      {description}
+    </p>
+    <a class={`bg-${color} invert w-fit px-4 py-2 mt-auto`}>
+      <span class={`text-${color} invert text-sm md:text-base`}>
+        Ver más →
+      </span>
+    </a>
+  </div>
+</div>

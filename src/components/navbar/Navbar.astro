@@ -2,11 +2,12 @@
 import NavbarButton from "../shared/NavbarButton.astro";
 ---
 
-<div class="relative w-full flex justify-center">
-  <div class="absolute z-50 fixed top-2 flex justify-center">
-    <div class="shadow-lg rounded-[10rem] overflow-hidden">
+<div class="relative w-screen">
+  <div class="absolute z-50 fixed top-2 flex w-full">
+    <img id="logoIram" src="/iramLetras.svg" class="absolute h-full left-20 hidden lg:block" />
+    <div class="w-full flex justify-center items-center">
       <section class="solid-glass">
-        <navbar class="flex justify center py-2 px-5">
+        <navbar class="flex justify center shadow-lg rounded-[10rem] overflow-hidden py-2 px-5 md:px-15">
           <NavbarButton href="/" label="aBOUT ME" />
           <NavbarButton href="/about" label="PROjECTS" />
           <NavbarButton href="/projects" label="SERvICES" />
@@ -36,4 +37,5 @@ import NavbarButton from "../shared/NavbarButton.astro";
       });
     });
   });
+
 </script>

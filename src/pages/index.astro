@@ -8,8 +8,6 @@ import ProjectsSection from "../components/sections/ProjectsSection.astro";
 import ContactSection from "../components/sections/ContactSection.astro";
 import FooterLayout from "../components/shared/FooterLayout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
@@ -22,3 +20,41 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 		<ContactSection />
 	</FooterLayout>
 </Layout>
+
+<script>
+	import { animate} from "motion/mini"
+	import { inView } from "motion"
+
+	const tittles = document.querySelectorAll(".tittle")
+
+	inView(tittles, (element) => {
+		animate(
+			element, 
+			{ opacity: [0, 1], x: [-100, 0] }, 
+			{ duration: 0.5 }
+		)
+
+		return () => { animate(element,
+			{ opacity : 0 },
+			)
+		}
+	}
+)
+    const liquidCristalImages = document.querySelectorAll(".liquidCristalImage")
+
+	inView(liquidCristalImages, (element) => {
+		animate(
+			element, 
+			{ transform: ['translateY(-100px)', 'translateY(0)'] }, 
+			{ duration: 1 }
+		)
+
+		return () => {animate(element,
+			{ transform: ['translateY(0)', 'translateY(-100px)'] },
+			)
+		}
+	})
+
+
+
+</script>

@@ -1,0 +1,31 @@
+<img id="logoIram" src="/iramLetras.svg" class="absolute h-full left-20 hidden lg:block darkMode" />
+<script>
+    import { animate } from "motion/mini"
+
+    const heroSection = document.getElementById("heroSection")
+    const logoIram = document.getElementById("logoIram")
+
+    if (logoIram){
+            const observer = new IntersectionObserver(
+        ([entry]) => {
+        if (entry.isIntersecting) {
+            // Está visible → ocultamos el logo
+            logoIram.style.display = 'none',
+            animate(logoIram, { opacity: [1,0] }, { duration: 0.5 })
+        } else {
+            // Ya no está en pantalla → mostramos el logo
+            logoIram.style.display = '',
+            animate(logoIram, { opacity: [0,1] }, { duration: 0.5 })
+        }
+        },
+    {
+      root: null, // viewport
+      threshold: 0.01 // puedes ajustar esto si quieres que se oculte solo si está más visible
+    }
+  )
+
+    if (heroSection && logoIram) {
+        observer.observe(heroSection)
+    }
+    }
+</script>

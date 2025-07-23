@@ -1,10 +1,11 @@
 ---
 import GlassEffect from "./GlassEffect.astro"
+import LogoIram from "./LogoIram.astro"
 ---
 
 <div class="relative w-screen">
   <div class="absolute z-50 fixed top-2 flex w-full navbar">
-    <img id="logoIram" src="/iramLetras.svg" class="absolute h-full left-20 hidden lg:block darkMode" />
+    <LogoIram />
     <div class="w-full flex justify-center items-center">
       <GlassEffect>
         <navbar class="flex justify center shadow-lg rounded-[10rem] overflow-hidden py-2 px-5 md:px-15">
@@ -19,11 +20,6 @@ import GlassEffect from "./GlassEffect.astro"
 </div>
 
 <style>
-
-  #logoIram {
-    filter : invert(0%)
-  }
-
   .navbarButton {
     padding-left: 0.5rem;  
     padding-right: 0.5rem;

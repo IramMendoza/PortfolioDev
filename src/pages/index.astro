@@ -1,6 +1,6 @@
 ---
 import HeroSection from "../components/sections/HeroSection.astro";
-import WhoIAm from "../components/sections/WhoIAm.astro";
+import WhoIAmSection from "../components/sections/WhoIAmSection.astro";
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/navbar/Navbar.astro';
 import ServicesSection from "../components/sections/ServicesSection.astro";
@@ -13,7 +13,7 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 <Layout>
 	<Navbar />
 	<HeroSection />
-	<WhoIAm />
+	<WhoIAmSection />
 	<ServicesSection />
 	<ProjectsSection />
 	<FooterLayout>
@@ -46,7 +46,7 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 		animate(
 			element, 
 			{ transform: ['translateY(-100px)', 'translateY(0)'] }, 
-			{ duration: 1 }
+			{ duration: 0.5 }
 		)
 
 		return () => {animate(element,
@@ -55,6 +55,20 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 		}
 	})
 
+	const serviceCards = document.querySelectorAll(".serviceCard")
+
+	inView(serviceCards, (element) => {
+		animate(
+			element, 
+			{ transform: ['translateX(-200px)', 'translateX(0)'] }, 
+			{ duration: 0.2 }
+		)
+
+		return () => { animate(element,
+			{ transform: ['translateX(0)', 'translateX(-100px)'] }, 
+			)
+		}
+	})
 
 
 </script>

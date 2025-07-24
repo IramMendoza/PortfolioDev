@@ -1,7 +1,112 @@
 
-<section class="w-screen h-screen bg-black darkSection">
-    <div>
-        <h2 class="text-white text-4xl font-bold text-center pt-10">Proyectos Destacados</h2>
-        <p class="text-gray-400 text-center mt-4">Aquí están algunos de los proyectos en los que he trabajado recientemente.</p>
+<section id="container" class="w-screen h-screen flex justify-center bg-black overflow-hidden darkSection">
+    <div class="h-full w-full flex justify-center items-center md:gap-5">
+        <div id="leftColumn" class="column">
+            <img class="projectCard" src="/Projects/redlights02.png"/>
+            <img class="projectCard" src="/Projects/azfood02.png"/>
+            <img class="projectCard" src="/Projects/azfood01.png"/>
+            <img class="projectCard" src="/Projects/redlights02.png"/>
+        </div>
+        <div id="centerColumn" class="column mb-[100vh]">
+            <img class="projectCard" src="/Projects/azfood03.png"/>
+            <img class="projectCard" src="/Projects/redlights03.png"/>
+            <img class="projectCard" src="/Projects/adhiccsa02.png"/>
+            <img class="projectCard" src="/Projects/azfood03.png"/>
+        </div>
+        <div id="rightColumn" class="hidden md:block column">
+            <img class="projectCard" src="/Projects/redlights04.png"/>
+            <img class="projectCard" src="/Projects/adhiccsa01.png"/>
+            <img class="projectCard" src="/Projects/redlights05.png"/>
+            <img class="projectCard" src="/Projects/redlights04.png"/>
+        </div>
     </div>
 </section>
+
+<style>
+
+    .projectCard {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+@media (min-width: 640px) {
+    .projectCard {
+        max-width: 200px;
+        height: 250px;
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .projectCard {
+        max-width: 220px;
+        height: 280px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .projectCard {
+        max-width: 250px;
+        height: 320px;
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .projectCard {
+        max-width: 280px;
+        height: 360px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+    .column {
+        width: full;
+        height: 130vh;
+    }
+</style>
+
+<script type="module">
+    function parallaxScroll({ containerId, columns }) {
+        const container = document.getElementById(containerId);
+        const els = columns.map(id => document.getElementById(id));
+        let startScroll = 0;
+        let isInView = false;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            isInView = entry.isIntersecting;
+
+            if (isInView) {
+                startScroll = window.scrollY;
+                window.addEventListener("scroll", onScroll);
+            } else {
+                els.forEach(el => el && (el.style.transform = 'translateY(0px)'));
+                window.removeEventListener("scroll", onScroll);
+            }
+        });
+
+        const onScroll = () => {
+            if (!isInView) return;
+            const y = window.scrollY - startScroll;
+            if (y < 0) return;
+
+            els.forEach((el, i) => {
+                if (!el) return;
+                const speed = [-0.4, 0.4, -0.3][i]; // ajusta según orden
+                el.style.transform = `translateY(${y * speed}px)`;
+            });
+        };
+
+        observer.observe(container);
+        window.addEventListener("beforeunload", () => window.removeEventListener("scroll", onScroll));
+    }
+
+    // ✅ Llamada simple
+    parallaxScroll({
+        containerId: "container",
+        columns: ["leftColumn", "centerColumn", "rightColumn"]
+    });
+</script>

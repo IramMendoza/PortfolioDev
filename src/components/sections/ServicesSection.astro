@@ -5,18 +5,18 @@ import ServiceCard from "../shared/ServiceCard.astro";
 <section
   class="w-screen h-auto bg-red-500 flex justify-center indexSection"
 >
-  <div class="max-w-[1150px] w-full h-auto relative flex flex-col py-10 lg:flex-row">
+  <div class="max-w-[1150px] w-[90vw] h-auto relative flex flex-col py-10 lg:flex-row">
     <div class="w-full h-auto lg:max-w-[30vw]">
       <h2
         id="title-section"
-        class="w-full lg:max-w-[40vw]  lg:absolute lg:sticky lg:top-30 text-black text-[4rem] md:text-[8rem] font-extrabold text-center tittle">
+        class="w-full lg:max-w-[40vw] lg:absolute lg:sticky lg:top-30 text-black text-[4rem] md:text-[7rem] font-extrabold text-center tittle">
         SERVICES
       </h2>
     </div>
 
     <div
       id="cardsContainer"
-      class="w-full flex flex-col items-center gap-5 px-4 h-full"
+      class="w-full flex flex-col items-center bg-yellow-500 gap-5 px-4 h-full"
     >
       <ServiceCard
         image="/mac.jpg"
@@ -51,7 +51,7 @@ import ServiceCard from "../shared/ServiceCard.astro";
   const updateTitle = () => {
     const width = window.innerWidth;
     if (titleEl) {
-      titleEl.textContent = width < 750 ? "SERVICES" : "SER-VICES";
+      titleEl.textContent = width < 900 ? "SERVICES" : "SER-VICES";
     }
   };
 

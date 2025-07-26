@@ -12,15 +12,17 @@ const { image, service, description, color } = Astro.props;
 
 ---
 
-<div class={`flex flex-col md:flex-row bg-${color} md:max-w-[60vw] shadow-lg p-4 serviceCard`}>
-  <img src={image} class="w-full md:w-[25vw] max-w-[300px] object-cover" />
+<div class={`flex flex-col md:flex-row bg-${color} md:max-w-[80%] shadow-lg p-4 serviceCard`}>
+  <div class="w-full flex justify-center">
+    <img src={image} class="w-full md:w-[25vw] max-w-[300px] object-cover" />
+  </div>
 
   <div class="flex flex-col justify-between px-4 py-2 h-full w-full">
     <p class={`text-${color} invert font-bold text-xl md:text-2xl`}>
       {service}
     </p>
 
-    <p class={`text-${color} invert text-sm mb-auto md:text-base my-4 md:my-2 leading-relaxed`}>
+    <p class={`text-${color} invert text-sm md:text-[10px] mb-auto my-4 md:my-2 leading-relaxed`}>
       {description}
     </p>
     <a class={`bg-${color} invert w-fit px-4 py-2 mt-auto`}>

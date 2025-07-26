@@ -1,23 +1,29 @@
 
-<section id="container" class="w-screen h-screen max-h-[800px] flex justify-center bg-black overflow-hidden darkSection">
+<section id="projectsContainer" class="w-screen h-screen max-h-[800px] flex justify-center bg-black overflow-hidden darkSection">
     <div class="h-full w-full flex justify-center items-center md:gap-5">
-        <div id="leftColumn" class="column">
+        <div id="leftColumn" class="column mb-[70vw]">
             <img class="projectCard" src="/Projects/redlights02.png"/>
             <img class="projectCard" src="/Projects/azfood02.png"/>
             <img class="projectCard" src="/Projects/azfood01.png"/>
             <img class="projectCard" src="/Projects/redlights02.png"/>
+            <img class="projectCard" src="/Projects/azfood02.png"/>
+            <img class="projectCard" src="/Projects/azfood01.png"/>
         </div>
-        <div id="centerColumn" class="column mb-[100vh]">
+        <div id="centerColumn" class="column mb-[100vw]">
             <img class="projectCard" src="/Projects/azfood03.png"/>
             <img class="projectCard" src="/Projects/redlights03.png"/>
             <img class="projectCard" src="/Projects/adhiccsa02.png"/>
             <img class="projectCard" src="/Projects/azfood03.png"/>
+            <img class="projectCard" src="/Projects/redlights03.png"/>
+            <img class="projectCard" src="/Projects/adhiccsa02.png"/>
         </div>
-        <div id="rightColumn" class="hidden md:block column">
+        <div id="rightColumn" class="hidden md:block mb-[80vw] column">
             <img class="projectCard" src="/Projects/redlights04.png"/>
             <img class="projectCard" src="/Projects/adhiccsa01.png"/>
             <img class="projectCard" src="/Projects/redlights05.png"/>
             <img class="projectCard" src="/Projects/redlights04.png"/>
+            <img class="projectCard" src="/Projects/adhiccsa01.png"/>
+            <img class="projectCard" src="/Projects/redlights05.png"/>
         </div>
     </div>
 </section>
@@ -91,7 +97,6 @@
         const onScroll = () => {
             if (!isInView) return;
             const y = window.scrollY - startScroll;
-            if (y < 0) return;
 
             els.forEach((el, i) => {
                 if (!el) return;
@@ -106,7 +111,7 @@
 
     // ✅ Llamada simple
     parallaxScroll({
-        containerId: "container",
+        containerId: "projectsContainer",
         columns: ["leftColumn", "centerColumn", "rightColumn"]
     });
 </script>

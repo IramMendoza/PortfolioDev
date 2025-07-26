@@ -2,43 +2,49 @@
 import Icon from "../shared/Icon.astro";
 ---
 
-
 <section
   id="Who I Am"
-  class="bg-black w-screen h-screen relative overflow-hidden darkSection"
+  class="bg-black w-screen h-screen flex justify-center relative overflow-hidden darkSection indexSection"
 >
-  <h2 class="text-white text-center pt-16 text-[4rem] md:text-[6rem] font-bold tittle">WHO I AM</h2>
-  <div class="w-full h-full px-10 md:px-20 py-5 md:py-10 md:flex md:justify-end">
-    <div class="flex flex-col items-center max-w-[500px]">
-      <p class="text-white">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad in
-        voluptates aliquid quibusdam architecto aspernatur, libero quaerat
-        nostrum porro reprehenderit cum quia iure ab deserunt culpa! Alias optio
-        ipsa illo!
-      </p>
-      <div id="IconContainer">
-        <div class="flex justify-center items-center gap-10 py-5">
-          <Icon src="/javascript-16-svgrepo-com.png" />
-          <Icon src="/typescript-16-svgrepo-com.png" />
-          <Icon src="/python-127-svgrepo-com.png" />
-        </div>
-        <div class="flex justify-center items-center gap-10 py-5">
-          <Icon src="/react-svgrepo-com.png" />
-          <Icon src="/astro-svgrepo-com.png" />
-          <Icon src="/framer-svgrepo-com.png" />
-          <Icon src="/django-svgrepo-com.png" />
-        </div>
-        <div class="flex justify-center items-center gap-10 py-5">
-          <Icon src="aws-svgrepo-com.png" />
+  <div class="max-w-[1100px] w-full h-full">
+    <h2
+      class="text-white text-center pt-16 text-[4rem] md:text-[6rem] font-bold isolate z-20 tittle"
+    >
+      WHO I AM
+    </h2>
+    <div
+      class="w-full h-full px-10 md:px-20 py-5 md:py-10 md:flex md:justify-center lg:justify-end"
+    >
+      <div class="flex flex-col items-center max-w-[500px]">
+        <p class="text-white isolate z-10">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad in
+          voluptates aliquid quibusdam architecto aspernatur, libero quaerat
+          nostrum porro reprehenderit cum quia iure ab deserunt culpa! Alias
+          optio ipsa illo!
+        </p>
+        <div class="isolate z-30" id="IconContainer">
+          <div class="flex justify-center items-center gap-10 py-5">
+            <Icon src="/javascript-16-svgrepo-com.png" />
+            <Icon src="/typescript-16-svgrepo-com.png" />
+            <Icon src="/python-127-svgrepo-com.png" />
+          </div>
+          <div class="flex justify-center items-center gap-10 py-5">
+            <Icon src="/react-svgrepo-com.png" />
+            <Icon src="/astro-svgrepo-com.png" />
+            <Icon src="/framer-svgrepo-com.png" />
+            <Icon src="/django-svgrepo-com.png" />
+          </div>
+          <div class="flex justify-center items-center gap-10 py-5">
+            <Icon src="aws-svgrepo-com.png" />
+          </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
   <img
-    class="absolute z-0 w-[100vw] md:w-[50vw] md:left-20 bottom-12 liquidCristalImage"
+    class="absolute z-0 w-[100vw] md:w-[70vw] lg:w-[50vw] md:left-20 bottom-12 liquidCristalImage"
     src="/liquidGlass2.png"
   />
 </section>
 
-<script>
-</script>
+<script></script>

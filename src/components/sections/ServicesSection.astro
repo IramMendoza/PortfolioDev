@@ -1,56 +1,60 @@
 ---
-
-import ServiceCard from '../shared/ServiceCard.astro';
-
+import ServiceCard from "../shared/ServiceCard.astro";
 ---
 
-<section class="w-screen h-auto relative flex flex-col py-10 md:flex-row bg-red-500">
-  <div class="w-full h-auto md:max-w-[40vw]">
-      <h2 id="title-section" class="w-full md:max-w-[40vw] md:absolute md:sticky md:top-30 text-black text-[4rem] md:text-[8rem] font-extrabold text-center tittle">
-      SERVICES
+<section
+  class="w-screen h-auto bg-red-500 flex justify-center indexSection"
+>
+  <div class="max-w-[1150px] w-full h-auto relative flex flex-col py-10 lg:flex-row">
+    <div class="w-full h-auto lg:max-w-[30vw]">
+      <h2
+        id="title-section"
+        class="w-full lg:max-w-[40vw]  lg:absolute lg:sticky lg:top-30 text-black text-[4rem] md:text-[8rem] font-extrabold text-center tittle">
+        SERVICES
       </h2>
-  </div>
+    </div>
 
-  <div
-    id="cardsContainer"
-    class="w-full flex flex-col items-center gap-5 px-4 h-full"
-  >
-    <ServiceCard 
-      image="/mac.jpg" 
-      service="WEB DESIGN" 
-      description="Diseño de sitios web modernos y responsivos." 
-      color="black" 
-    />
-    <ServiceCard 
-      image="/mac.jpg" 
-      service="App Development" 
-      description="Desarrollo de aplicaciones móviles y web." 
-      color="white" 
-    />
-    <ServiceCard 
-      image="/mac.jpg" 
-      service="SEO Optimization" 
-      description="lore ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit." 
-      color="black" 
-    />
-    <ServiceCard 
-      image="/mac.jpg" 
-      service="App Development" 
-      description="Desarrollo de aplicaciones móviles y web." 
-      color="white" 
-    />
+    <div
+      id="cardsContainer"
+      class="w-full flex flex-col items-center gap-5 px-4 h-full"
+    >
+      <ServiceCard
+        image="/mac.jpg"
+        service="WEB DESIGN"
+        description="Diseño de sitios web modernos y responsivos."
+        color="black"
+      />
+      <ServiceCard
+        image="/mac.jpg"
+        service="App Development"
+        description="Desarrollo de aplicaciones móviles y web."
+        color="white"
+      />
+      <ServiceCard
+        image="/mac.jpg"
+        service="SEO Optimization"
+        description="lore ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        color="black"
+      />
+      <ServiceCard
+        image="/mac.jpg"
+        service="App Development"
+        description="Desarrollo de aplicaciones móviles y web."
+        color="white"
+      />
+    </div>
   </div>
 </section>
 
 <script>
-  const titleEl = document.getElementById('title-section')
+  const titleEl = document.getElementById("title-section");
   const updateTitle = () => {
-    const width = window.innerWidth
+    const width = window.innerWidth;
     if (titleEl) {
-      titleEl.textContent = width < 750 ? 'SERVICES' : 'SER-VICES'
+      titleEl.textContent = width < 750 ? "SERVICES" : "SER-VICES";
     }
-  }
+  };
 
   updateTitle();
-  window.addEventListener('resize', updateTitle)
+  window.addEventListener("resize", updateTitle);
 </script>

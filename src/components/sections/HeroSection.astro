@@ -4,33 +4,41 @@ const span = "app <developer>";
 
 <section
   id="heroSection"
-  class="relative w-screen h-screen bg-gray-300 flex justify-center overflow-hidden"
+  class="relative w-screen h-screen max-h-[1000px] bg-gray-300 flex justify-center overflow-hidden indexSection"
 >
-  <div
-    class="w-full h-full flex md:justify-start md:pl-15 justify-center pt-12"
+  <div id="container"
+    class="w-full max-w-[1100px] h-full max-h-[1000px] flex md:justify-start justify-center px-5 pt-12"
   >
-    <div class="relative w-auto h-auto z-10 px-5">
-      <img class="w-[100vw] md:w-[55vw] tittle" src="/iramLetras.svg" />
-      <span class="text-[8px] md:text-lg"
+    <div class="relative w-auto h-auto z-10">
+      <img class="w-[90vw] md:w-[55vw] max-w-[650px] tittle" src="/iramLetras.svg" />
+      <span class="text-[10px] md:text-[1rem]"
         >CREATIVO / DISRUPTIVO / FUNCIONAL</span
       >
-      <img alt="Picture" class="w-[65vw] md:w-[45vw]" src="/Retrato.jpg" />
-      <span class="text-[10px] md:text-[20px]">{span}</span>
-      <img
-        alt="squares"
-        class="w-[2rem] md:w-[3rem] py-1"
-        src="/projects-svgrepo-com.svg"
-      />
+      <div class="w-full">
+        <img
+          alt="Picture"
+          class="w-[65vw] max-w-[550px] md:w-[45vw] isolate z-10"
+          src="/Retrato.jpg"
+        />
+        <span class="text-[10px] md:text-[15px]">{span}</span>
+        <img
+          alt="squares"
+          class="w-[2rem] py-1"
+          src="/projects-svgrepo-com.svg"
+        />
+      </div>
+
       <img
         alt="arrow"
-        class="w-[2rem] md:w-[3rem] absolute bottom-7"
+        class="w-[2rem] md:w-[3rem] absolute right-5 md:left-0 bottom-7"
         src="/arrowDown.svg"
       />
+
     </div>
   </div>
 
   <div
-    class="absolute z-0 w-[80vw] md:w-[50vw] md:scale-x-[-1] md:scale-y-[-1] md:right-0 md:left-auto left-0 bottom-25 liquidCristalImage"
+    class="absolute z-20 w-[80vw] max-w-[600px] md:w-[50vw] md:scale-x-[-1] md:scale-y-[-1] md:right-0 md:left-auto left-0 bottom-10 liquidCristalImage"
   >
     <img src="/LiquidGlassSinFondo copia.png" />
   </div>

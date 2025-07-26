@@ -1,7 +1,13 @@
 
+<<<<<<< Updated upstream
 <section id="container" class="w-screen h-screen flex justify-center bg-black overflow-hidden darkSection">
+=======
+<section id="projectsContainer" class="w-screen h-screen max-h-[800px] flex justify-center bg-black overflow-hidden darkSection">
+>>>>>>> Stashed changes
     <div class="h-full w-full flex justify-center items-center md:gap-5">
-        <div id="leftColumn" class="column">
+        <div id="leftColumn" class="column mb-[80vh]">
+            <img class="projectCard" src="/Projects/azfood02.png"/>
+            <img class="projectCard" src="/Projects/azfood01.png"/>
             <img class="projectCard" src="/Projects/redlights02.png"/>
             <img class="projectCard" src="/Projects/azfood02.png"/>
             <img class="projectCard" src="/Projects/azfood01.png"/>
@@ -12,12 +18,16 @@
             <img class="projectCard" src="/Projects/redlights03.png"/>
             <img class="projectCard" src="/Projects/adhiccsa02.png"/>
             <img class="projectCard" src="/Projects/azfood03.png"/>
+            <img class="projectCard" src="/Projects/redlights03.png"/>
+            <img class="projectCard" src="/Projects/adhiccsa02.png"/>
         </div>
-        <div id="rightColumn" class="hidden md:block column">
+        <div id="rightColumn" class="hidden md:block mb-[80vh] column">
             <img class="projectCard" src="/Projects/redlights04.png"/>
             <img class="projectCard" src="/Projects/adhiccsa01.png"/>
             <img class="projectCard" src="/Projects/redlights05.png"/>
             <img class="projectCard" src="/Projects/redlights04.png"/>
+            <img class="projectCard" src="/Projects/adhiccsa01.png"/>
+            <img class="projectCard" src="/Projects/redlights05.png"/>
         </div>
     </div>
 </section>
@@ -70,7 +80,7 @@
 </style>
 
 <script type="module">
-    function parallaxScroll({ containerId, columns }) {
+    function parallaxScroll({ containerId ,columns }) {
         const container = document.getElementById(containerId);
         const els = columns.map(id => document.getElementById(id));
         let startScroll = 0;
@@ -78,6 +88,9 @@
 
         const observer = new IntersectionObserver(([entry]) => {
             isInView = entry.isIntersecting;
+
+
+            console.log("isInView",isInView)
 
             if (isInView) {
                 startScroll = window.scrollY;
@@ -91,11 +104,10 @@
         const onScroll = () => {
             if (!isInView) return;
             const y = window.scrollY - startScroll;
-            if (y < 0) return;
 
             els.forEach((el, i) => {
                 if (!el) return;
-                const speed = [-0.4, 0.4, -0.3][i]; // ajusta según orden
+                const speed = [-0.4, 0.4, -0.3][i];
                 el.style.transform = `translateY(${y * speed}px)`;
             });
         };
@@ -106,7 +118,7 @@
 
     // ✅ Llamada simple
     parallaxScroll({
-        containerId: "container",
+        containerId: "projectsContainer",
         columns: ["leftColumn", "centerColumn", "rightColumn"]
     });
 </script>

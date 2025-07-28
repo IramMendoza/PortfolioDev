@@ -1,4 +1,4 @@
-<img id="logoIram" src="/iramLetras.svg" class="absolute h-[80%] lg:h-full left-10 lg:left-20 hidden md:block darkMode" />
+<img id="logoIram" src="/iramLetras.svg" class="absolute h-[80%] lg:h-full left-10 lg:left-25 hidden md:block darkMode" />
 <script>
     import { animate } from "motion/mini"
 
@@ -15,7 +15,7 @@
         } else {
             // Ya no está en pantalla → mostramos el logo
             logoIram.style.display = '',
-            animate(logoIram, { opacity: [0,1] }, { duration: 0.5 })
+            animate(logoIram, { opacity : [0,1]}, { duration: 0.5 })
         }
         },
     {

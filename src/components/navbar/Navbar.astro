@@ -39,48 +39,55 @@ import LogoIram from "./LogoIram.astro"
   import { animate } from "motion/mini";
 
   window.addEventListener("DOMContentLoaded", () => {
-    const navbar = document.querySelector(".navbar");
-    const darkModeElements = document.querySelectorAll(".darkMode");
-    const darkSections = document.querySelectorAll(".darkSection");
+  const navbar = document.querySelector(".navbar");
+  const darkModeElements = document.querySelectorAll(".darkMode");
+  const darkSections = document.querySelectorAll(".darkSection");
 
-    let lastState = false;
+  let lastState = false;
 
-    function checkOverlap() {
-      if (!navbar) {
-        requestAnimationFrame(checkOverlap)
-        return
-      }
-      const navbarRect = navbar.getBoundingClientRect()
-
-      let isOverDark = false;
-
-      darkSections.forEach((section) => {
-        const sectionRect = section.getBoundingClientRect()
-
-        const overlap =
-          navbarRect.bottom > sectionRect.top &&
-          navbarRect.top < sectionRect.bottom
-
-        if (overlap) {
-          isOverDark = true
-        }
-      })
-
-      if (isOverDark !== lastState) {
-        lastState = isOverDark
-
-        darkModeElements.forEach((el) =>
-          animate(
-            el,
-            { filter: isOverDark ? "invert(100%)" : "invert(0%)" },
-            { duration: 0.1 }
-          )
-        );
-      }
-
+  function checkOverlap() {
+    if (!navbar) {
       requestAnimationFrame(checkOverlap)
+      return
+    }
+    const navbarRect = navbar.getBoundingClientRect()
+
+    let isOverDark = false;
+
+    darkSections.forEach((section) => {
+      const sectionRect = section.getBoundingClientRect()
+
+      const overlap =
+        navbarRect.bottom > sectionRect.top &&
+        navbarRect.top < sectionRect.bottom
+
+      if (overlap) {
+        isOverDark = true
+      }
+    })
+
+    if (isOverDark !== lastState) {
+      lastState = isOverDark
+
+      darkModeElements.forEach((el) => {
+        // ✅ Verificar que el elemento está renderizado y es un HTMLElement
+        if (el instanceof HTMLElement && el.offsetParent !== null && el.offsetWidth > 0 && el.offsetHeight > 0) {
+          try {
+            animate(
+              el,
+              { filter: isOverDark ? "invert(100%)" : "invert(0%)" },
+              { duration: 0.1 }
+            );
+          } catch (error) {
+            console.warn("Error animating element:", error);
+          }
+        }
+      });
     }
 
     requestAnimationFrame(checkOverlap)
-  })
+  }
+
+  requestAnimationFrame(checkOverlap)
+})
 </script>

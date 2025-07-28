@@ -16,8 +16,12 @@
           class="w-[65vw] max-w-[510px] md:w-[45vw] isolate z-10"
           src="/Retrato.jpg"
         />
-        <span id="spanDynamic" class="text-[12px] md:text-[15px]">app</span>
-        <span class="text-[12px] md:text-[15px]">{"</developer>"}</span>
+
+        <div class="flex flex-row gap-1">
+          <span id="webSpan" style="display: block;" class="text-[12px] md:text-[15px] font-bold">web</span>
+          <span id="appSpan" style="display: none;" class="text-[12px] md:text-[15px] font-bold">app</span>
+          <span class="text-[12px] md:text-[15px]">{"</developer>"}</span>
+        </div>
 
         <img
           alt="squares"
@@ -45,29 +49,39 @@
 <script>
 import { animate } from "motion/mini"
 
-    const spanApp = "app"
-    const spanWeb = "web"
-    const inAnimation = { opacity : [1,1], transform : ['translateY(+100px)','translateY(0)'] }
-    const outAnimation = { opacity : [1,1], transform : ['translateY(0)','translateY(-100px)'] }
-    const duration = { duration : 0.5 }
-    const span = document.getElementById("spanDynamic")
-  
-    function spanChange() {
+const webSpan = document.getElementById("webSpan")
+const appSpan = document.getElementById("appSpan")
+const inAnimation = { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] }
+const outAnimation = { opacity: [1, 0], transform: ['translateY(0)', 'translateY(-20px)'] }
+const duration = { duration: 0.05 }
 
-    if (span?.textContent === spanApp) {
-        animate(span,outAnimation, duration)
-        span.textContent = spanWeb
-        animate(span,inAnimation, duration)
-        setTimeout(spanChange, 2500)
+let isWebVisible = true
+
+async function spanChange() {
+    if (!webSpan || !appSpan) return
+
+    if (isWebVisible) {
+        await animate(webSpan, outAnimation, duration).finished
+        webSpan.style.display = "none"
+        
+        appSpan.style.display = "block"
+        animate(appSpan, inAnimation, duration)
+        
+        isWebVisible = false
     } 
     
-    else if (span?.textContent === spanWeb) {
-        animate(span,outAnimation, duration)
-        span.textContent = spanApp
-        animate(span,inAnimation, duration)
-        setTimeout(spanChange, 2500)
+    else {
+        await animate(appSpan, outAnimation, duration).finished
+        appSpan.style.display = "none"
+        
+        webSpan.style.display = "block"
+        animate(webSpan, inAnimation, duration)
+        
+        isWebVisible = true
     }
+    
+    setTimeout(spanChange, 2500)
 }
 
-  spanChange()
+spanChange()
 </script>

@@ -1,7 +1,3 @@
----
-const span = "app <developer>";
----
-
 <section
   id="heroSection"
   class="relative w-screen h-screen max-h-[1000px] bg-gray-300 flex justify-center overflow-hidden indexSection"
@@ -20,7 +16,9 @@ const span = "app <developer>";
           class="w-[65vw] max-w-[510px] md:w-[45vw] isolate z-10"
           src="/Retrato.jpg"
         />
-        <span class="text-[10px] md:text-[15px]">{span}</span>
+        <span id="spanDynamic" class="text-[12px] md:text-[15px]">app</span>
+        <span class="text-[12px] md:text-[15px]">{"</developer>"}</span>
+
         <img
           alt="squares"
           class="w-[2rem] py-1"
@@ -43,3 +41,33 @@ const span = "app <developer>";
   <img src="/LiquidGlassSinFondo copia.png" />
 </div>
 </section>
+
+<script>
+import { animate } from "motion/mini"
+
+    const spanApp = "app"
+    const spanWeb = "web"
+    const inAnimation = { opacity : [1,1], transform : ['translateY(+100px)','translateY(0)'] }
+    const outAnimation = { opacity : [1,1], transform : ['translateY(0)','translateY(-100px)'] }
+    const duration = { duration : 0.5 }
+    const span = document.getElementById("spanDynamic")
+  
+    function spanChange() {
+
+    if (span?.textContent === spanApp) {
+        animate(span,outAnimation, duration)
+        span.textContent = spanWeb
+        animate(span,inAnimation, duration)
+        setTimeout(spanChange, 2500)
+    } 
+    
+    else if (span?.textContent === spanWeb) {
+        animate(span,outAnimation, duration)
+        span.textContent = spanApp
+        animate(span,inAnimation, duration)
+        setTimeout(spanChange, 2500)
+    }
+}
+
+  spanChange()
+</script>

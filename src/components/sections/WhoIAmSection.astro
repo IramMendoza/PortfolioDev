@@ -3,7 +3,7 @@ import Icon from "../shared/Icon.astro";
 ---
 
 <section
-  id="Who I Am"
+  id="whoIAm"
   class="bg-black w-screen h-screen flex justify-center relative overflow-hidden darkSection indexSection"
 >
   <div class="max-w-[1100px] w-full h-full">
@@ -42,7 +42,23 @@ import Icon from "../shared/Icon.astro";
     </div>
   </div>
   <img
-    class="absolute z-0 w-[100vw] min-[560px]:w-[70vw] lg:w-[70vw] max-w-[500px] md:left-25 bottom-12 liquidCristalImage"
+    id="liquidImage"
+    class="absolute z-0 w-[100vw] min-[560px]:w-[70vw] lg:w-[70vw] max-w-[500px] md:left-25 bottom-12"
     src="/liquidGlass2.png"
   />
 </section>
+
+<script >
+  import { animate, scroll } from "motion"
+
+  const sectionContainer = document.getElementById("whoIAm")
+  const liquidImage = document.getElementById("liquidImage")
+
+  if (liquidImage && sectionContainer)
+  
+    scroll((progress : any) => {
+      animate(liquidImage, { y : -progress *120 })
+      }, { target : sectionContainer, offset: ["start end", "end start"] }, 
+    )
+
+</script>

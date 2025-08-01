@@ -1,7 +1,7 @@
 
 <section id="projectsContainer" class="w-screen h-screen max-h-[800px] flex justify-center bg-black overflow-hidden darkSection">
     <div class="h-full w-full flex justify-center items-center md:gap-5">
-        <div id="leftColumn" class="column mb-[70vw]">
+        <div class="column sideColumn mb-[300vh]">
             <img class="projectCard" src="/Projects/redlights02.png"/>
             <img class="projectCard" src="/Projects/azfood02.png"/>
             <img class="projectCard" src="/Projects/azfood01.png"/>
@@ -9,7 +9,7 @@
             <img class="projectCard" src="/Projects/azfood02.png"/>
             <img class="projectCard" src="/Projects/azfood01.png"/>
         </div>
-        <div id="centerColumn" class="column mb-[100vw]">
+        <div id="centerColumn" class="column">
             <img class="projectCard" src="/Projects/azfood03.png"/>
             <img class="projectCard" src="/Projects/redlights03.png"/>
             <img class="projectCard" src="/Projects/adhiccsa02.png"/>
@@ -17,7 +17,7 @@
             <img class="projectCard" src="/Projects/redlights03.png"/>
             <img class="projectCard" src="/Projects/adhiccsa02.png"/>
         </div>
-        <div id="rightColumn" class="hidden md:block mb-[80vw] column">
+        <div class="hidden md:block column sideColumn mb-[300vh]">
             <img class="projectCard" src="/Projects/redlights04.png"/>
             <img class="projectCard" src="/Projects/adhiccsa01.png"/>
             <img class="projectCard" src="/Projects/redlights05.png"/>
@@ -75,43 +75,19 @@
     }
 </style>
 
-<script type="module">
-    function parallaxScroll({ containerId, columns }) {
-        const container = document.getElementById(containerId);
-        const els = columns.map(id => document.getElementById(id));
-        let startScroll = 0;
-        let isInView = false;
+<script>
+    import { scroll, animate } from "motion"
 
-        const observer = new IntersectionObserver(([entry]) => {
-            isInView = entry.isIntersecting;
+    const scrollContainer = document.getElementById("projectsContainer")
+    const centerColumn = document.getElementById("centerColumn")
+    const sideColumn = document.querySelectorAll(".sideColumn")
 
-            if (isInView) {
-                startScroll = window.scrollY;
-                window.addEventListener("scroll", onScroll);
-            } else {
-                els.forEach(el => el && (el.style.transform = 'translateY(0px)'));
-                window.removeEventListener("scroll", onScroll);
-            }
-        });
+    if (centerColumn && sideColumn && scrollContainer)
 
-        const onScroll = () => {
-            if (!isInView) return;
-            const y = window.scrollY - startScroll;
-
-            els.forEach((el, i) => {
-                if (!el) return;
-                const speed = [-0.4, 0.4, -0.3][i]; // ajusta según orden
-                el.style.transform = `translateY(${y * speed}px)`;
-            });
-        };
-
-        observer.observe(container);
-        window.addEventListener("beforeunload", () => window.removeEventListener("scroll", onScroll));
-    }
-
-    // ✅ Llamada simple
-    parallaxScroll({
-        containerId: "projectsContainer",
-        columns: ["leftColumn", "centerColumn", "rightColumn"]
-    });
+    scroll((progress : any ) => {
+        animate(centerColumn, { y : progress * -800 }, { bounce : 0 })
+        animate(sideColumn, { y : progress * 1200 }, { bounce : 0 })
+        }, { target : scrollContainer, offset: ["start end", "end start"] }
+    )
+    
 </script>

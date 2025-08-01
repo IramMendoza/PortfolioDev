@@ -1,5 +1,5 @@
 ---
-import ServiceCard from "../shared/ServiceCard.astro";
+import ServiceCard from "../shared/ServiceCard.astro"
 ---
 
 <section
@@ -23,24 +23,28 @@ import ServiceCard from "../shared/ServiceCard.astro";
         service="WEB DESIGN"
         description="Diseño de sitios web modernos y responsivos."
         color="black"
+        id="1"
       />
       <ServiceCard
         image="/mac.jpg"
         service="App Development"
         description="Desarrollo de aplicaciones móviles y web."
         color="white"
+        id="2"
       />
       <ServiceCard
         image="/mac.jpg"
         service="SEO Optimization"
         description="lore ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit."
         color="black"
+        id="3"
       />
       <ServiceCard
         image="/mac.jpg"
         service="App Development"
-        description="Desarrollo de aplicaciones móviles y web."
+        description="lore ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit."
         color="white"
+        id="4"
       />
     </div>
   </div>
@@ -51,10 +55,10 @@ import ServiceCard from "../shared/ServiceCard.astro";
   const updateTitle = () => {
     const width = window.innerWidth;
     if (titleEl) {
-      titleEl.textContent = width < 900 ? "SERVICES" : "SER-VICES";
+      titleEl.textContent = width < 900 ? "SERVICIOS" : "SERV-ICIOS";
     }
   };
 
   updateTitle();
-  window.addEventListener("resize", updateTitle);
+  window.addEventListener("resize", updateTitle)
 </script>

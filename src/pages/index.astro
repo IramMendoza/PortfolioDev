@@ -46,7 +46,7 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 		animate(
 			element, 
 			{ transform: ['translateY(-100px)', 'translateY(0)'] }, 
-			{ duration: 0.5 }
+			{ duration: 0.5, bounce : 0 }
 		)
 
 		return () => {animate(element,
@@ -60,8 +60,8 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 	inView(serviceCards, (element) => {
 		animate(
 			element, 
-			{ transform: ['translateX(-200px)', 'translateX(0)'] }, 
-			{ duration: 0.2 }
+			{ transform : ['translateX(-200px)', 'translateX(0)'] }, 
+			{ duration: 0.2 },
 		)
 
 		return () => { animate(element,

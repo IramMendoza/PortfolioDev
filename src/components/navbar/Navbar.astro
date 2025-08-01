@@ -9,10 +9,10 @@ import LogoIram from "./LogoIram.astro"
     <div class="w-full flex justify-center items-center">
       <GlassEffect>
         <navbar class="flex justify center shadow-lg rounded-[10rem] overflow-hidden py-2 px-5 md:px-15">
-          <a href="" class="navbarButton darkMode">aBOUT ME</a>
-          <a href="" class="navbarButton darkMode">PROjECTS</a>
-          <a href="" class="navbarButton darkMode">SERvICES</a>
-          <a href="" class="navbarButton darkMode">CoNTACT</a>
+          <a href="" class="navbarButton darkMode">aCERCA DE MI</a>
+          <a href="" class="navbarButton darkMode">PROyECTOS</a>
+          <a href="" class="navbarButton darkMode">SERvICIOS</a>
+          <a href="" class="navbarButton darkMode">CoNTACTO</a>
         </navbar>
       </GlassEffect>
     </div>
@@ -35,59 +35,59 @@ import LogoIram from "./LogoIram.astro"
   }
 </style>
 
-<script>
-  import { animate } from "motion/mini";
+<script >
+    import { animate } from "motion/mini";
 
-  window.addEventListener("DOMContentLoaded", () => {
-  const navbar = document.querySelector(".navbar");
-  const darkModeElements = document.querySelectorAll(".darkMode");
-  const darkSections = document.querySelectorAll(".darkSection");
+window.addEventListener("DOMContentLoaded", () => {
+const navbar = document.querySelector(".navbar");
+const darkModeElements = document.querySelectorAll(".darkMode");
+const darkSections = document.querySelectorAll(".darkSection");
 
-  let lastState = false;
+let lastState = false;
 
-  function checkOverlap() {
-    if (!navbar) {
-      requestAnimationFrame(checkOverlap)
-      return
-    }
-    const navbarRect = navbar.getBoundingClientRect()
-
-    let isOverDark = false;
-
-    darkSections.forEach((section) => {
-      const sectionRect = section.getBoundingClientRect()
-
-      const overlap =
-        navbarRect.bottom > sectionRect.top &&
-        navbarRect.top < sectionRect.bottom
-
-      if (overlap) {
-        isOverDark = true
-      }
-    })
-
-    if (isOverDark !== lastState) {
-      lastState = isOverDark
-
-      darkModeElements.forEach((el) => {
-        // ✅ Verificar que el elemento está renderizado y es un HTMLElement
-        if (el instanceof HTMLElement && el.offsetParent !== null && el.offsetWidth > 0 && el.offsetHeight > 0) {
-          try {
-            animate(
-              el,
-              { filter: isOverDark ? "invert(100%)" : "invert(0%)" },
-              { duration: 0.1 }
-            );
-          } catch (error) {
-            console.warn("Error animating element:", error);
-          }
-        }
-      });
-    }
-
+function checkOverlap() {
+  if (!navbar) {
     requestAnimationFrame(checkOverlap)
+    return
+  }
+  const navbarRect = navbar.getBoundingClientRect()
+
+  let isOverDark = false;
+
+  darkSections.forEach((section) => {
+    const sectionRect = section.getBoundingClientRect()
+
+    const overlap =
+      navbarRect.bottom > sectionRect.top &&
+      navbarRect.top < sectionRect.bottom
+
+    if (overlap) {
+      isOverDark = true
+    }
+  })
+
+  if (isOverDark !== lastState) {
+    lastState = isOverDark
+
+    darkModeElements.forEach((el) => {
+      // ✅ Verificar que el elemento está renderizado y es un HTMLElement
+      if (el instanceof HTMLElement && el.offsetParent !== null && el.offsetWidth > 0 && el.offsetHeight > 0) {
+        try {
+          animate(
+            el,
+            { filter: isOverDark ? "invert(100%)" : "invert(0%)" },
+            { duration: 0.1 }
+          );
+        } catch (error) {
+          console.warn("Error animating element:", error);
+        }
+      }
+    });
   }
 
   requestAnimationFrame(checkOverlap)
+}
+
+requestAnimationFrame(checkOverlap)
 })
 </script>

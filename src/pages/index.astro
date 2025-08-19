@@ -26,6 +26,8 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 	import { inView } from "motion"
 
 	const tittles = document.querySelectorAll(".tittle")
+	const text = document.querySelectorAll(".text")
+	
 
 	inView(tittles, (element) => {
 		animate(
@@ -69,6 +71,22 @@ import FooterLayout from "../components/shared/FooterLayout.astro";
 			)
 		}
 	})
+
+	inView(text, (element) => {
+		animate(
+			element, 
+			{ opacity: [0, 1], x: [-100, 0] }, 
+			{ duration: 0.5 }
+		)
+
+		return () => { animate(element,
+			{ opacity : 0 },
+			)
+		}
+
+	})
+
+
 
 
 </script>

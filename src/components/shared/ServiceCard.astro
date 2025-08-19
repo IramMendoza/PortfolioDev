@@ -3,18 +3,15 @@ interface Props {
   image: string;
   service: string;
   description: string;
+  extendedDescription: string;
   color : string;
   id : string;
-
 }
 
-const { image, service, description, color, id } = Astro.props;
-
-/// El span debe tener los colores tambien invertidos, ya que su elemento padre fuerza el inversion del color tambien en el texto
-
+const { image, service, description, extendedDescription, color, id } = Astro.props;
 ---
 
-<div id={id} class={`flex flex-col md:flex-row w-auto max-w-[550px] shadow-xl/20 p-4 serviceCard`} style={`background-color: ${color}`}>
+<div id={id} class={`flex flex-col md:flex-row max-w-[550px] shadow-xl/20 p-4 serviceCard`} style={`background-color: ${color}`}>
   <div class="w-full flex justify-center items-center">
     <img src={image} class="w-full md:w-[25vw] max-w-[250px] object-cover" />
   </div>
@@ -25,19 +22,105 @@ const { image, service, description, color, id } = Astro.props;
     </p>
 
     <div class="max-w-[250px] w-full">
-        <p class={`text-${color} invert text-sm md:text-[10px] mb-auto py-2 md:my-2 leading-relaxed`}>
+        <p id={`short-description-${id}`} class={`text-${color} invert text-sm md:text-[10px] mb-auto py-2 md:my-2 leading-relaxed block text`}>
         {description}
-    </p>
-
+        </p>
+        <p id={`extended-description-${id}`} class={`text-${color} invert text-sm md:text-[10px] mb-auto py-2 md:my-2 leading-relaxed hidden text`}>
+          {extendedDescription}
+        </p>
     </div>
-    <button class={`invert w-fit px-4 py-2 mt-auto`} style={`background-color: ${color}`}>
+
+    <button id={`button-${id}`} class={`invert w-fit px-4 py-2 mt-auto button`} style={`background-color: ${color}`}>
       <span class={`text-${color} invert text-sm md:text-base`}>
-        Ver más →
+        <span id={`button-text-${id}`}>Ver más →</span>
       </span>
     </button>
+
   </div>
 </div>
 
 <script>
+  // Importar animate desde Motion (asegúrate de que Motion esté incluido en tu proyecto)
+  import { animate } from 'motion';
 
+  // Función para manejar el toggle de descripciones
+  function setupServiceCardToggle(cardId : string) {
+    const card = document.getElementById(cardId);
+    const button = document.getElementById(`button-${cardId}`);
+    const shortDescription = document.getElementById(`short-description-${cardId}`);
+    const extendedDescription = document.getElementById(`extended-description-${cardId}`);
+    const buttonText = document.getElementById(`button-text-${cardId}`);
+    
+    if (card && button && shortDescription && extendedDescription && buttonText) {
+      let isExpanded = false;
+      
+      button.addEventListener('click', () => {
+        // Obtener la altura actual de la card
+        const currentHeight = card.offsetHeight;
+        
+        if (isExpanded) {
+          // Mostrar descripción corta
+          shortDescription.classList.remove('hidden');
+          shortDescription.classList.add('block');
+          animate(shortDescription, { opacity: [0, 1] }, { duration: 0.1 });
+          
+          extendedDescription.classList.remove('block');
+          animate(extendedDescription, { opacity: [1, 0] }, { duration: 0.1 });
+          extendedDescription.classList.add('hidden');
+          
+          buttonText.textContent = 'Ver más →';
+          isExpanded = false;
+          
+          // Animar la altura de la card y resetear al final
+          requestAnimationFrame(() => {
+            const newHeight = card.offsetHeight;
+            animate(card, 
+              { height: [currentHeight + 'px', newHeight + 'px'] }, 
+              { duration: 0.3, easing: 'ease-out' }
+            ).finished.then(() => {
+              // Resetear la altura para que sea automática
+              card.style.height = 'auto';
+            });
+          });
+          
+        } else {
+          // Mostrar descripción extendida
+          shortDescription.classList.remove('block');
+          animate(shortDescription, { opacity: [1, 0] }, { duration: 0.1 });
+          shortDescription.classList.add('hidden');
+          
+          extendedDescription.classList.remove('hidden');
+          animate(extendedDescription, { opacity: [0, 1] }, { duration: 0.1 });
+          extendedDescription.classList.add('block');
+          
+          buttonText.textContent = 'Ver menos ←';
+          isExpanded = true;
+          
+          // Animar la altura de la card y resetear al final
+          requestAnimationFrame(() => {
+            const newHeight = card.offsetHeight;
+            animate(card, 
+              { height: [currentHeight + 'px', newHeight + 'px'] }, 
+              { duration: 0.3, easing: 'ease-out' }
+            ).finished.then(() => {
+              // Resetear la altura para que sea automática
+              card.style.height = 'auto';
+            });
+          });
+        }
+      });
+    }
+  }
+
+  // Inicializar los toggles para todas las cards
+  document.addEventListener('DOMContentLoaded', () => {
+    // Obtener todos los IDs de las cards presentes en la página
+    const serviceCards = document.querySelectorAll('.serviceCard');
+    serviceCards.forEach(card => {
+      const cardId = card.id;
+      if (cardId) {
+        setupServiceCardToggle(cardId);
+      }
+    });
+  });
 </script>

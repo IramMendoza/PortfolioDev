@@ -9,10 +9,10 @@ import LogoIram from "./LogoIram.astro"
     <div class="w-full flex justify-center items-center">
       <GlassEffect>
         <navbar class="flex justify center shadow-lg rounded-[10rem] overflow-hidden py-2 px-5 md:px-15">
-          <a href="" class="navbarButton darkMode">aCERCA DE MI</a>
-          <a href="" class="navbarButton darkMode">PROyECTOS</a>
-          <a href="" class="navbarButton darkMode">SERvICIOS</a>
-          <a href="" class="navbarButton darkMode">CoNTACTO</a>
+          <a data-scroll="whoIAm" class="navbarButton darkMode">aCERCA DE MI</a>
+          <a data-scroll="projectsContainer" class="navbarButton darkMode">PROyECTOS</a>
+          <a data-scroll="servicesSection" class="navbarButton darkMode">SERvICIOS</a>
+          <a data-scroll="contactSection" class="navbarButton darkMode">CoNTACTO</a>
         </navbar>
       </GlassEffect>
     </div>
@@ -36,7 +36,7 @@ import LogoIram from "./LogoIram.astro"
 </style>
 
 <script >
-    import { animate } from "motion/mini";
+import { animate } from "motion/mini";
 
 window.addEventListener("DOMContentLoaded", () => {
 const navbar = document.querySelector(".navbar");
@@ -90,4 +90,19 @@ function checkOverlap() {
 
 requestAnimationFrame(checkOverlap)
 })
+
+// Scroll a la seccion correspondiente
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-scroll]");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const sectionId = btn.getAttribute("data-scroll");
+        const section = sectionId? document.getElementById(sectionId) : ""
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+  });
 </script>
